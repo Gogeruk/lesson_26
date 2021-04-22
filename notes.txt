@@ -1,0 +1,135 @@
+//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\
+//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\
+//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\
+
+/// DONE ///
+1. Зарегистрировать бота в Telegram
+/// DONE ///
+
+/// DONE ///
+2. Реализовать миграцию (скрипт) для создания таблицы orders.
+Содержимое таблицы на своё усмотрение.
+Обязательно должны быть поля title (для наименования товара)
++ status (0 - заказ в работе, 1 - заказ выполнен);
+/// DONE ///
+
+/// DONE ///
+3. Заполнения таблицу orders фейковыми данными.
+/// DONE ///
+
+/// DONE ///
+4. Реализовать консольную команду bot:updates  (custom command)
+(https://laravel.com/docs/8.x/artisan)
+/// DONE ///
+
+/// DONE ///
+5. Реализовать скрипт (поведение бота),
+который будет принимать id заказа и возвращать его название и статус.
+/// DONE ///
+
+//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\
+//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\
+//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\//|\/|\\
+
+BOT NAME:
+Super_awsome_bot_test
+Super_awsome_bot_test_bot
+
+/////////////////////////////////////////////////////////////////////////////////
+Done! Congratulations on your new bot. You will find it at t.me/Super_awsome_bot_test_bot. You can now add a description, about section and profile picture for your bot, see /help for a list of commands. By the way, when you've finished creating your cool bot, ping our Bot Support if you want a better username for it. Just make sure the bot is fully operational before you do this.
+
+Use this token to access the HTTP API:
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Keep your token secure and store it safely, it can be used by anyone to control your bot.
+
+For a description of the Bot API, see this page: https://core.telegram.org/bots/api
+/////////////////////////////////////////////////////////////////////////////////
+
+php artisan make:model Order --migration
+
+php artisan make:factory OrderFactory
+
+php artisan make:controller OrderController
+
+// IMPORTNT
+docker-compose exec app bash start.bash
+// IMPORTNT
+
+
+docker-compose exec app php artisan cache:clear
+
+
+
+//////// COMMAND BUILDING
+
+php artisan make:command BotOrders
+???
+ bot:updates
+should be like this or something
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+docker-compose exec app php artisan bot:updates
+
+
+
+
+
+    |        |        |        |        |        |        |        |        |
+  //|\\    //|\\    //|\\    //|\\    //|\\    //|\\    //|\\    //|\\    //|\\
+ ///|\\\  ///|\\\  ///|\\\  ///|\\\  ///|\\\  ///|\\\  ///|\\\  ///|\\\  ///|\\\
+////|\\\\////|\\\\////|\\\\////|\\\\////|\\\\////|\\\\////|\\\\////|\\\\////|\\\\
+\\\\|////\\\\|////\\\\|////\\\\|////\\\\|////\\\\|////\\\\|////\\\\|////\\\\|////
+ \\\|///  \\\|///  \\\|///  \\\|///  \\\|///  \\\|///  \\\|///  \\\|///  \\\|///
+  \\|//    \\|//    \\|//    \\|//    \\|//    \\|//    \\|//    \\|//    \\|//
+    |        |        |        |        |        |        |        |        |
+
+
+// SOS FOR LARAVEL DOCKER SET UP
+https://www.digitalocean.com/community/tutorials/how-to-set-up-laravel-nginx-and-mysql-with-docker-compose
+///////////...\\\\\\\\\\\
+
+
+// START
+cd www
+docker-compose up -d
+php artisan key:generate
+
+// CONFIG DB AND MAKE A USER
+docker-compose exec db bash
+mysql -u root -p
+GRANT ALL PRIVILEGES  ON laravel.* TO 'laraveluser'@'%' IDENTIFIED BY 'secret';
+FLUSH PRIVILEGES;
+EXIT;
+exit
+
+// CHANGE .env WITH CREDS
+ALSO ADD
+TELEGRAM_API_kEY={token}
+
+// SEEDING
+docker-compose exec app bash start.bash
+
+// CONNECT TO DB
+docker exec -it db mysql -u laraveluser -p
+THEN INPUT A PASSWORD: "secret"
+
+// TO STOP
+docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
+
+
+
+
+
+
+
+
+
+    |        |        |        |        |        |        |        |        |
+  //|\\    //|\\    //|\\    //|\\    //|\\    //|\\    //|\\    //|\\    //|\\
+ ///|\\\  ///|\\\  ///|\\\  ///|\\\  ///|\\\  ///|\\\  ///|\\\  ///|\\\  ///|\\\
+////|\\\\////|\\\\////|\\\\////|\\\\////|\\\\////|\\\\////|\\\\////|\\\\////|\\\\
+\\\\|////\\\\|////\\\\|////\\\\|////\\\\|////\\\\|////\\\\|////\\\\|////\\\\|////
+ \\\|///  \\\|///  \\\|///  \\\|///  \\\|///  \\\|///  \\\|///  \\\|///  \\\|///
+  \\|//    \\|//    \\|//    \\|//    \\|//    \\|//    \\|//    \\|//    \\|//
+    |        |        |        |        |        |        |        |        |
